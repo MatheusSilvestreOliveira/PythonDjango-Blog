@@ -1,0 +1,10 @@
+pip install django
+pip install pillow mysqlclient django-summernote
+
+django-admin startproject blog .
+python manage.py startapp categories
+python manage.py startapp posts
+python manage.py startapp comments
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
