@@ -1,7 +1,7 @@
 <!--_nav.html-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary static-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Blog</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,20 +9,32 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Python</a>
+                    <a class="nav-link" href="{% url 'post_category' 'Movies' %}">Movies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Django</a>
+                    <a class="nav-link" href="{% url 'post_category' 'TV and Series' %}">TV and Series</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Tecnology</a>
+                    <a class="nav-link" href="{% url 'post_category' 'Celebrities' %}">Celebrities</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">System</a>
+                    <a class="nav-link" href="{% url 'post_category' 'World' %}">World</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_category' 'Art' %}">Art</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_category' 'Music' %}">Music</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_category' 'Games' %}">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'post_category' 'Sport' %}">Sport</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0 ml-lg-4" action="/busca/">
-                <input name="termo" value="" class="form-control mr-sm-2" type="search" placeholder="Search"
+            <form class="form-inline my-2 my-lg-0 ml-lg-4" action="{% url 'post_search' %}">
+                <input name="term" value="{{ request.GET.term }}" class="form-control mr-sm-2" type="search" placeholder="Search"
                        aria-label="Search">
             </form>
         </div>
