@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from .models import Post
 from django.db.models import Q, Count, Case, When
+from comments.forms import FormComment
+from comments.models import Comments
+from django.contrib import messages
 
 
 class PostIndex(ListView):
@@ -55,4 +58,20 @@ class PostCategory(PostIndex):
 
 
 class PostDetails(UpdateView):
-    pass
+    template_name = 'posts/post_details.html'
+    model = Post
+    form_class = FormComment
+    context_object_name = 'post'
+
+    def form_valid(self, form):
+        post = self.get_object()
+        comment = Comments(**form.cleaned_data)
+        comment.comment_post = post
+
+        if self.request.user.is_authenticated:
+            comment.comment_user = self.request.user
+
+        comment.save()
+        messages.success(self.request, 'Comment submitted successfully.')
+
+        return redirect('post_details', pk=post.id)
