@@ -75,3 +75,11 @@ class PostDetails(UpdateView):
         messages.success(self.request, 'Comment submitted successfully.')
 
         return redirect('post_details', pk=post.id)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        comments = Comments.objects.order_by('-id').filter(comment_show=True,
+                                           comment_post=post.id)
+        context['comments'] = comments
+        return context

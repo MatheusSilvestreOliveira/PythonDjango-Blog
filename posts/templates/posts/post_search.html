@@ -13,7 +13,7 @@
     <div class="card">
 
         {% if post.post_image %}
-        <a href="{% url 'post' post.id %}">
+        <a href="{% url 'post_details' post.id %}">
             <img class="card-img-top"
                  src="{{ post.post_image.url }}"
                  alt="{{ post.post_title }}">
@@ -22,7 +22,7 @@
 
         <div class="card-body">
             <h5 class="card-title">
-                <a href="{% url 'post' post.id %}">
+                <a href="{% url 'post_details' post.id %}">
                     {{ post.post_title }}
                 </a>
             </h5>
@@ -38,7 +38,7 @@
             </p>
 
             <div class="text-right">
-                <a href="{% url 'post' post.id %}" class="btn btn-outline-secondary">Read about...</a>
+                <a href="{% url 'post_details' post.id %}" class="btn btn-outline-secondary">Read about...</a>
             </div>
         </div>
     </div>

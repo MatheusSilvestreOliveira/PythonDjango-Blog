@@ -36,9 +36,13 @@
     <div class="row pt-5">
         <div class="col-xl"></div>
         <div class="col-xl-8">
-            <h2 class="my-3">Comments</h2>
+            <h2 class="my-3">Comments ({{ comments.count }})</h2>
 
-
+            {% for comment in comments %}
+                <h5 class="mb-2 mt-5">{{ comment.comment_name }} says:</h5>
+                <small class="text-muted">{{ comment.comment_date }}</small>
+                <p class="mb-1">{{ comment.comment }}</p>
+            {% endfor %}
 
         </div>
         <div class="col-xl"></div>
